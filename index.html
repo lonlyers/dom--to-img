@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #table{
+            position: relative;
+            width: 400px;
+            height: 400px;
+            background-image: url('./image/design-bg01.jpg') ;
+            background-size: cover;
+        }
+        .ip{
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: white;
+        }
+        #tx{
+            position: absolute;
+            z-index: 99;
+            font-size: 30px;
+            color: rgb(235, 170, 170);
+            background: none;
+            width: 300px;
+            border: none;
+            margin: 20px auto;
+            top: 40px;
+            left: 50px;
+            resize: none;
+        }
+        .table2{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            top: 40px;
+            left: 50px;
+            /* margin-top:-200px; */
+        }
+    </style>
+</head>
+<body>
+    <div id="table">
+        <input type="text" class="ip">
+        <textarea name="" id="tx" cols="30" rows="10"></textarea>
+        <img src="./image/design-bg01.jpg" alt="" class="table2">
+    </div>
+    <input type="file" id='file'>
+    <button class="de">截图</button>
+    <!-- <script src="./node_modules/html2canvas/dist/html2canvas.js"></script> -->
+    <script src="./node_modules/dom-to-image/dist/dom-to-image.min.js"></script>
+    <script>
+       
+        document.querySelector('.de').onclick=function(){
+            var node = document.getElementById('table');
+            var str = document.getElementById('file').value
+            document.getElementById('table').style.backgroundImage = str
+            console.log(str);
+            
+                domtoimage.toPng(node)
+                    .then(function (dataUrl) {
+                        var img = new Image();
+                        img.src = dataUrl;
+                        document.body.appendChild(img);
+                    });
+        }
+        
+      // 插入图片到html
+      // 
+      
+    </script>
+</body>
+</html>
